@@ -1,6 +1,6 @@
 # coding: utf-8
 
-import os 
+import os
 import sys
 import subprocess
 import tkinter as tk
@@ -22,19 +22,19 @@ command_arg = ''
 
 # 取得したパスでループ
 for p in file_paths:
-    
+
     if out_path == '':
         # 出力先パスは一番最初に現れるファイルのカレントパスとする
         out_path = os.path.dirname(p) + '\\'
-        
+
     # 結合用ファイル名の取得
     part_file = os.path.basename(p)
-    
+
     if out_file == '':
         # 出力先ファイル名は結合用ファイル名の拡張子を無くしたものとする
         # 結合用ファイルの拡張子は なんとかかんとか.7z.001　なので、.001を削る
         z7_part_name = os.path.basename(p).split('.')
-        
+
         # list.remove()は存在しない要素を指定するとValueError Exceptionが起こるのでトラップする
         # リスト最初のファイル名に拡張子001がなかったらエラーで抜ける
         try :
@@ -42,10 +42,10 @@ for p in file_paths:
         except ValueError:
             messagebox.showinfo('エラー','分割7zの結合ではない可能性')
             sys.exit()
-            
+
         # listはjoinメソッドで結合できる
         out_file = '.'.join(z7_part_name)
-    
+
     # コマンドライン文字列作成
     if command_arg != '':
         command_arg = command_arg + '+'
